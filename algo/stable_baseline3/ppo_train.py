@@ -11,12 +11,13 @@ from torch.nn import functional as F
 
 if __name__ == "__main__":
     try:
+        env_name = "highway-v0"
         train = True
         if train:
             n_cpu = 1
             batch_size = 64
             env = make_vec_env(
-                "highway-fast-v0",
+                env_name,
                 seed=1,
                 n_envs=n_cpu,
                 vec_env_cls=SubprocVecEnv,
@@ -32,11 +33,11 @@ if __name__ == "__main__":
                 learning_rate=5e-4,
                 gamma=0.8,
                 verbose=2,
-                tensorboard_log="highway_ppo/",
+                tensorboard_log=f"models/{env_name}_ppo/",
             )
             # Train the agent
             model.learn(total_timesteps=int(2e5))
             # Save the agent
-            model.save("highway_ppo/model")
+            model.save(f"models/{env_name}_ppo/model")
     except EOFError as e:
         print(e)
