@@ -12,6 +12,7 @@ from torch.nn import functional as F
 if __name__ == "__main__":
     try:
         env_name = "highway-v0"
+        algo_name = "ppo"
         train = True
         if train:
             n_cpu = 1
@@ -33,11 +34,11 @@ if __name__ == "__main__":
                 learning_rate=5e-4,
                 gamma=0.8,
                 verbose=2,
-                tensorboard_log=f"models/{env_name}_ppo/",
+                tensorboard_log=f"models/stable_baseline3/{env_name}_{algo_name}/",
             )
             # Train the agent
             model.learn(total_timesteps=int(2e5))
             # Save the agent
-            model.save(f"models/{env_name}_ppo/model")
+            model.save(f"models/stable_baseline3/{env_name}_{algo_name}/model")
     except EOFError as e:
         print(e)
