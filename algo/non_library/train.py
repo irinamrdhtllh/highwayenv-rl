@@ -1,9 +1,10 @@
 import argparse
 
 from gymnasium.wrappers import FlattenObservation
-from vpg.vpg import vpg
 
 from env.highway_v0_env import create_env
+
+from .vpg.vpg import vpg
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
