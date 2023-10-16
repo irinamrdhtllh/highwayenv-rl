@@ -7,8 +7,8 @@ import torch
 import torch.nn as nn
 from torch.optim import Adam
 
-from .actor_critic import MLPActorCritic
-from .helper import combined_shape, discount_cumsum
+from ..actor_critic import MLPActorCritic
+from ..helper import combined_shape, discount_cumsum
 
 
 class Buffer:
@@ -76,7 +76,7 @@ def vpg(
     vf_lr=1e-3,
     train_v_iters=80,
     lam=0.95,
-    max_ep_len=1000,
+    max_ep_len=1_000,
     save_freq=10,
 ):
     seed += 10_000
